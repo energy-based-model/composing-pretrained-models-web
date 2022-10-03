@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-M09001M6S2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-M09001M6S2');
+</script>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="description" content="Composing Pre-trained Models via Iterative Consensus and Wisdom of the Crowds">
+  <meta name="keywords" content="Compositionality,Wisdom of the Crowds,Image Generation,Robot Manipulation,Video Question Answerining,Mathematical Reasoning">
+  <title>Composing Pre-trained Models via Iterative Consensus and Wisdom of the Crowds</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="website_files/bootstrap.css">
+  <script src="website_files/jquery.js"></script>
+  <script src="website_files/bootstrap.js"></script>
+  <style>
+    /* Remove the navbar's default margin-bottom and rounded borders */ 
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+    
+    /* Add a gray background color and some padding to the footer */
+    footer {
+      background-color: #f2f2f2;
+      padding: 25px;
+    }
+  </style>
+<script>
+    function setImageGLIDE(select){
+       var image = document.getElementsByName("image-swap-1")[0];
+       image.src = select.options[select.selectedIndex].value;
+    }
+    function setImageStable(select){
+       var image = document.getElementsByName("image-swap-2")[0];
+       image.src = select.options[select.selectedIndex].value;
+    }
+</script>
+  <link rel="stylesheet" href="website_files/font.css">
+  <link rel="stylesheet" href="website_files/main.css">
+</head>
+<body>
+
+<div class="jumbotron">
+  <div class="container text-center">
+    <!-- <h1 style="color:white;margin-bottom:0;">Composable-Diffusion</h1> -->
+    <h1 style="color:white;margin-bottom:0;">Composing Ensembles of Pre-trained Models via Iterative Consensus</h1>
+    <!-- <h3 style="color:white;margin-top:0;">ECCV 2022</h3> -->
+    <br>
+    <p style="color:white"><a href="https://people.csail.mit.edu/lishuang/">Shuang Li</a><sup>1</sup>,
+      <a href="https://yilundu.github.io">Yilun Du</a><sup>1</sup>, 
+      <a href="https://mitibmwatsonailab.mit.edu/people/joshua-tenenbaum/">Joshua B. Tenenbaum</a><sup>1</sup>
+      <a href="https://groups.csail.mit.edu/vision/torralbalab/">Antonio Torralba</a><sup>1</sup>,
+      <a href="https://scholar.google.com/citations?user=Vzr1RukAAAAJ&hl=en">Igor Mordatch</a><sup>2</sup>
+      <br><sup>1</sup>MIT, <sup>2</sup>Google Brain
+      <!-- <br> -->
+      <!-- <a>(* indicate equal contribution)</a> -->
+    <br>
+  </div>
+</div>
+  
+<div class="container bg-3">    
+  <div class="row text-center">
+
+    <!-- <div class="col-sm-2 col-sm-offset-1">
+      <a href="https://www.youtube.com/watch?v=_zN-wVwPH1s"><img height="78" width="120" src="./NeRF-Supervision_files/video-thumb.png" data-nothumb="" style="border: 1px solid;"><br>Overview<br>Video<br></a>
+    </div> -->
+    
+    <div class="col-sm-2 col-sm-offset-1">
+      <a href="https://arxiv.org/pdf/2206.01714.pdf"><img height="100" width="78" src="website_files/imgs/paper_page.png" data-nothumb="" style="border: 1px solid"><br>Arxiv<br>Paper<br></a>
+    </div>
+    <div class="col-sm-2">
+      <a href="https://github.com/energy-based-model/Compositional-Visual-Generation-with-Composable-Diffusion-Models-PyTorch"><img height="100" width="78" src="website_files/imgs/source_code.png" data-nothumb="" style="border: 1px solid"><br>Source Code<br>Github</a>
+    </div>
+    <div class="col-sm-2">
+      <a href="https://colab.research.google.com/github/energy-based-model/Compositional-Visual-Generation-with-Composable-Diffusion-Models-PyTorch/blob/main/notebooks/demo.ipynb"><img height="78" width="120" src="website_files/imgs/colab.png" data-nothumb="" style="border: 1px solid"><br>Colab Demo:<br>Composable Diffusion Models</a>
+    </div>
+    <div class="col-sm-2">
+      <a href="https://huggingface.co/spaces/Shuang59/Composable-Diffusion"><img height="78" width="78" src="website_files/imgs/huggingface.png" data-nothumb="" style="border: 1px solid"><br>Hugging Face<br>Demo</a>
+    </div>
+    <div class="col-sm-2">
+      <a href="#results"><img height="100" width="130" src="website_files/imgs/website_teaser.png" data-nothumb="" style="border: 1px solid"><br>Results</a>
+    </div>
+
+  </div>
+</div><br>
+
+<div class="container bg-3">
+  <div class="row">
+    <h2 class="text-center">Video Demos</h2>
+    <hr>
+    <div class="col-sm-6 text-center">
+      <p><b>Compose natural language descriptions:</b></p>
+      <video autoplay="" loop="" muted="" playsinline="" class="img-responsive">
+        <source src="website_files/imgs/teaser_glide_1.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="col-sm-6 text-center">
+      <p><b>Compose natural language descriptions:</b></p>
+      <video autoplay="" loop="" muted="" playsinline="" class="img-responsive">
+        <source src="website_files/imgs/teaser_glide.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+      </video>
+    </div>
+  </div>
+  <br>
+
+  <div class="row">
+    <div class="col-sm-6 text-center">
+      <p><b>Compose objects:</b></p>
+      <video autoplay="" loop="" muted="" playsinline="" class="img-responsive">
+        <source src="website_files/imgs/clevr_pos_teaser.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="col-sm-6 text-center">
+      <p><b>Compose object relational descriptions:</b></p>
+      <video autoplay="" loop="" muted="" playsinline="" class="img-responsive">
+        <source src="website_files/imgs/clevr_rel_teaser.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+      </video>
+    </div>
+    <!-- <div class="col-sm-6 text-center">
+      <p><b>Compose human facial attributes:</b></p>
+      <video autoplay="" loop="" muted="" playsinline="" class="img-responsive">
+        <source src="website_files/imgs/ffhq_teaser.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+      </video>
+    </div> -->
+</div><br>
+</div>
+
+<br><br>
+
+<div class="container">
+    <h2 id="interactive_demo_stable_diffusion" class="text-center">Interactive Demos (Stable Diffusion)</h2>
+    <hr>
+    <div class="row">
+        <div class="col-sm-12 text-center">
+            <div class="section">
+                <div class="section" style="text-align: center">
+                    <span><strong>Text Prompt: </strong></span>
+                    <label for="composed_stable_diffusion">
+                        <select id='composed_stable_diffusion' class="dropselect" style="text-align: center" name="composed_stale_diffusion_generation" onchange="setImageStable(this);">
+                            <option value="website_files/imgs/stable_4.png" selected="">A cloudy blue sky AND A mountain in the horizon AND Cherry Blossoms around the mountain</option>
+                            <option value="website_files/imgs/stable_1.png">A horse AND a yellow flower field</option>
+                            <option value="website_files/imgs/stable_2.png">A train on a bridge AND a river under the bridge</option>
+                            <option value="website_files/imgs/stable_3.png">A river leading into mountains AND red trees on the side</option>
+                            <option value="website_files/imgs/stable_5.png">A house on a hill AND clouds in the background</option>
+                            <option value="website_files/imgs/stable_6.png">A red house next to a pond AND yellow trees next to the pond</option>
+                            <option value="website_files/imgs/stable_7.png">A church on a hill AND a river next to the church</option>
+                        </select>
+                    </label>
+                </div>
+                <div class="row align-items-center">
+                    <div class="col justify-content-center text-center">
+                        <img src="website_files/imgs/stable_4.png"
+                             class="img-fluid" alt="" style="width:100%; height:100%" name="image-swap-2">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div><br>
+
+<div class="container">
+    <h2 id="interactive_demo_glide" class="text-center">Interactive Demos (GLIDE)</h2>
+    <hr>
+    <div class="row">
+        <div class="col-sm-12 text-center">
+            <div class="section">
+                <div class="section" style="text-align: center">
+                    <span><strong>Text Prompt: </strong></span>
+                    <label for="composed_glide">
+                        <select id='composed_glide' class="dropselect" style="text-align: center" name="composed_glide_generation" onchange="setImageGLIDE(this);">
+                            <option value="website_files/imgs/1.png" selected="">A horse AND a yellow flower field</option>
+                            <option value="website_files/imgs/2.png">A train on a bridge AND a river under the bridge</option>
+                            <option value="website_files/imgs/3.png">A river leading into mountains AND red trees on the side</option>
+                            <option value="website_files/imgs/4.png">A cloudy blue sky AND A mountain in the horizon AND Cherry Blossoms in front of the mountain</option>
+                            <option value="website_files/imgs/5.png">A house on a hill AND clouds in the background</option>
+                            <option value="website_files/imgs/6.png">A red house next to a pond AND green trees next to the pond</option>
+                            <option value="website_files/imgs/7.png">A church on a hill AND a road in front of a hill</option>
+                            <option value="website_files/imgs/8.png">A tree on a hill AND a wheat field in front of a hill</option>
+                        </select>
+                    </label>
+                </div>
+                <div class="row align-items-center">
+                    <div class="col justify-content-center text-center">
+                        <img src="website_files/imgs/1.png"
+                             class="img-fluid" alt="" style="width:100%; height:100%" name="image-swap-1">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div><br>
+
+<div class="container bg-3">
+  <div class="row">
+    <h2 class="text-center">Method</h2>
+    <hr>
+    <p><b>Compositional generation.</b> Our method can compose multiple diffusion models during inference and generate images containing all the concepts described in the inputs without further training. We first send an image from iteration \(t\) and each individual concept \(c_i\) to the diffusion model to generate a set of scores \(\{\epsilon_\theta(\mathbf{x}_t, t|c_1), \ldots, \epsilon_\theta(\mathbf{x}_t, t|c_n)\}\). We then compose different concepts using the proposed compositional operators, such as conjunction, to denoise the generated images. The final image is obtained after \(T\) iterations.</p>
+    <div class="col-sm-12 text-center">
+      <!-- <img src="website_files/imgs/models-medium.gif" alt="Computer man" style="width:1250px;height:250px;border:0.5px solid gray"> -->
+      <!-- <img src="website_files/imgs/models-medium.gif" alt="Computer man" style="width:1200px;height:250px;"> -->
+      <!-- <img src="website_files/imgs/models-medium.gif" alt="Computer man" style="width:100%;"> -->
+      <video autoplay="" loop="" muted="" playsinline="" class="img-responsive" controls="">
+        <source src="website_files/imgs/models-medium.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+      </video>
+    </div>
+  </div>
+</div><br>
+
+
+
+
+
+  <div class="container bg-3">
+  <div class="row">
+    <h2 class="text-center" id="results">More Results</h2>
+    <hr>
+     <p>
+       <b>Composing Language Descriptions.</b> We develop Composed GLIDE (Ours), a version of GLIDE
+          that utilizes our compositional operators to combine textual descriptions, without further training. We compare it
+          to the original GLIDE, which directly encodes the descriptions as a single long sentence. Our approach more
+          accurately captures text details, such as the "overwater bungalows" in the third example.
+     </p>
+    <div class="col-sm-12 text-center">
+      <img src="website_files/imgs/glide.png" class="img-fluid" alt="glide" style="width:88%">
+    </div>
+  </div>
+
+    <div class="row">
+      <hr>
+      <p>
+       <b>Composing Objects.</b> Our method can compose multiple objects while baselines either miss or generate more objects.
+      </p>
+      <div class="col-sm-12 text-center">
+        <img src="website_files/imgs/clevr_object.png" class="img-fluid" alt="clevr_objects" style="width:100%; height:100%">
+      </div>
+    </div>
+
+    <div class="row">
+      <hr>
+      <p>
+       <b>Composing Visual Relations.</b> Image generation results on the relational CLEVR dataset.
+      Our model is trained to generate images conditioned on a single object relation, but during inference, our model can compose multiple object relations.
+      The baseline methods either miss objects or generate more object relations.
+      </p>
+      <div class="col-sm-12 text-center">
+        <img src="website_files/imgs/clevr_rel.png" class="img-fluid" alt="clevr_relations" style="width:80%; height:100%">
+      </div>
+    </div>
+    
+
+    
+<!-- 
+    <div class="row">
+      <hr>
+      <p>
+        <b>Composing Facial Attributes.</b> Image generation results on the FFHQ dataset.
+        Our model is trained to generate images conditioned on a single human facial attribute, but during inference,
+         our model can recursively compose multiple facial attributes using the proposed compositional operators.
+         The baselines either fail to compose attributes (StyleGAN2 and LACE) or generate low-quality images (EBM).
+      </p>
+      <div class="col-sm-12 text-center">
+        <img src="website_files/imgs/ffhq.png" class="img-fluid" alt="ffhq" style="width:80%">
+      </div>
+    </div>
+
+ -->
+
+
+</div><br>
+
+
+<div class="container bg-3">
+  <div class="row">
+    <h2 class="text-center">Result Analysis</h2>
+    <hr>
+     <p>
+       <b>Success Examples.</b> In each example, the first two images are generated conditioned on each individual sentence description and the last image is generated by composing the sentences.
+     </p>
+    <div class="col-sm-6 text-center">
+      <img src="website_files/imgs/success_cases.png" class="img-fluid" alt="failures" style="width:100%">
+    </div>
+    <div class="col-sm-6 text-center">
+      <img src="website_files/imgs/success_cases2.png" class="img-fluid" alt="failures" style="width:100%">
+    </div>
+  </div>
+
+  <div class="row">
+    <hr>
+    <p>
+       <b>Failure Examples</b>. There are three main types of failures:<br>
+       (1) The pre-trained diffusion model does not understand certain concepts, such as "person".<br>
+       (2) The pre-trained duffision model confuses objects' attributes.<br>
+       (3) The composition fails. This usually happens when the objects are in the center of the images.
+     </p>
+     <br>
+     <div class="col-sm-6 text-center">
+      <img src="website_files/imgs/failure1.png" class="img-fluid" alt="failures" style="width:90%">
+    </div>
+    <div class="col-sm-6 text-center">
+      <img src="website_files/imgs/failure2.png" class="img-fluid" alt="failures" style="width:90%">
+    </div>
+    <br>
+    <div class="col-sm-12 text-center">
+      <img src="website_files/imgs/failure3.png" class="img-fluid" alt="failures" style="width:95%">
+    </div>
+  </div>
+  <div class="row">
+    <hr>
+    <p>
+       <b>Interesting Examples</b>. Our method, which combines multiple textual descriptions, can generate different styles of images compared to GLIDE, which directly encodes the descriptions as a single long sentence. Prompted with 'a dog' and 'the sky', our method generates a dog-shaped cloud, whereas GLIDE generates a dog under the sky from the prompt 'a dog and the sky'.
+     </p>
+     <br>
+     <div class="col-sm-6 text-center">
+      <img src="website_files/imgs/interesting_cases.png" class="img-fluid" alt="failures" style="width:70%">
+    </div>
+
+    <div class="col-sm-6 text-center">
+      <img src="website_files/imgs/interesting_cases2.png" class="img-fluid" alt="failures" style="width:70%">
+    </div>
+  </div>
+</div><br>
+
+
+
+    <div class="container bg-3">
+      <div class="row">
+        <h2 class="text-center">Acknowledgement</h2>
+        <hr>
+        <p>Thanks <a href="https://baulab.info/">David Bau</a> for proofreading the paper and providing suggestions,
+            and <a href="https://scholar.google.com/citations?user=5fU-QMwAAAAJ&hl=en">Mark Chen</a> for running DALLE-2 examples for our paper.
+            This webpage template was recycled from <a href="https://yenchenlin.me/nerf-supervision/">here</a>. </p>
+      </div>
+    </div><br><br>
+
+
+</div>
+
+
+</body>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</html>
