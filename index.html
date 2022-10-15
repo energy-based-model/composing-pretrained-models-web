@@ -335,6 +335,30 @@ pre {
   clear: both;
   display: table;
 }
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+.figure-img {
+  margin-bottom: 0.5rem;
+  line-height: 1;
+}
+
+
+
+
+
+
+
+
+.rounded-circle {
+  border-radius: 50% !important;
+}
+
+
+
+
+
 
 /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 500px) {
@@ -497,7 +521,7 @@ pre {
                     <br><br>
 
                     <!-- <video width="800" loop autoplay muted style="border:1px solid black"> -->
-                    <video width="840" loop autoplay muted controls>
+                    <video width="850" loop autoplay muted controls>
                         <source src="materials/new3-2.mp4" type="video/mp4">
                     </video>
                 </div>
@@ -539,8 +563,57 @@ pre {
 
     </section> 
 
+
+
+
+
+
+    <section id="paper">
+        <h2>Team</h2>        
+        <div class="row">
+            <div class="column">
+                <a href='https://people.csail.mit.edu/lishuang/'>
+                    <img  src=./materials/people/lishuang.jpg class="figure-img img-fluid rounded-circle" height=200px width=200px>
+                </a>
+                <p class=profname>Shuang Li</p>
+                <p class=institution>MIT</p>
+            </div>
+
+            <div class="column">
+                <a href='https://yilundu.github.io/'>
+                    <img  src=./materials/people/yilun.jpg class="figure-img img-fluid rounded-circle" height=200px width=200px>
+                </a>
+                <p class=profname> Yilun Du </p>
+                <p class=institution>MIT</p>
+            </div>
+
+            <div class="column">
+                <a href='https://scholar.google.com/citations?user=rRJ9wTJMUB8C&hl=en'>
+                    <img  src=./materials/people/josh2.jpg class="figure-img img-fluid rounded-circle" height=200px width=200px>
+                </a>
+                <p class=profname> Joshua Tenenbaum </p>
+                <p class=institution>MIT</p>
+            </div>
+
+            <div class="column">
+                <a href="https://groups.csail.mit.edu/vision/torralbalab/">
+                    <img src=./materials/people/antonioTorralba.jpg class="figure-img img-fluid rounded-circle" height=200px width=200px>
+                </a>
+                <p class=profname> Antonio Torralba </p>
+                <p class=institution>MIT</p>
+            </div>
+
+            <div class="column">
+                <a href='https://scholar.google.com/citations?user=Vzr1RukAAAAJ&hl=en'>
+                    <img  src=./materials/people/xuusrug0_400x400.jpeg class="figure-img img-fluid rounded-circle" height=200px width=200px>
+                </a>
+                <p class=profname> Igor Mordatch </p>
+                <p class=institution>Google Brain</p>
+            </div>          
+    </section>
    
 
+<!-- 
     <section id="paper">
         <h2>Paper</h2>
         <hr>
@@ -553,7 +626,6 @@ pre {
             <div class="paper-stuff">
                 <p><b>Composing Ensembles of Pre-trained Models via Iterative Consensus</b></p>
                 <p>Shuang Li, Yilun Du, Joshua B. Tenenbaum, Antonio Torralba, Igor Mordatch</p>
-                <!-- <p><i>arXiv, 2022 <b></b></i></p>  -->
                 <div><span class="material-icons"> description </span><a href="https://arxiv.org/abs/2210.06978"> arXiv version</a></div>
                 <div><span class="material-icons"> integration_instructions </span><a href="https://github.com/nv-tlabs/LION"> Code</a></div>
             </div>
@@ -561,16 +633,20 @@ pre {
         </div>
     </section>
 
-    <section id="bibtex">
+ -->
+
+    <!-- <section id="bibtex">
         <h2>Citation</h2>
         <hr>
         <pre><code>@inproceedings{zeng2022lion,
-    title={LION: Latent Point Diffusion Models for 3D Shape Generation},
-    author={Xiaohui Zeng and Arash Vahdat and Francis Williams and Zan Gojcic and Or Litany and Sanja Fidler and Karsten Kreis},
-    booktitle={Advances in Neural Information Processing Systems (NeurIPS)},
-    year={2022}
-}</code></pre>
-    </section>
+            title={LION: Latent Point Diffusion Models for 3D Shape Generation},
+            author={Xiaohui Zeng and Arash Vahdat and Francis Williams and Zan Gojcic and Or Litany and Sanja Fidler and Karsten Kreis},
+            booktitle={Advances in Neural Information Processing Systems (NeurIPS)},
+            year={2022}
+        }</code></pre>
+    </section> -->
+
+    
 </div>
 </body>
 </html>
