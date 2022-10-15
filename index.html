@@ -1,315 +1,576 @@
-<!DOCTYPE html>
 
-<html lang="en">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<script type="text/javascript" charset="utf-8" src="https://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script> 
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<style type="text/css">
+body {
+    font-family: "Titillium Web", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-weight: 300;
+    font-size: 17px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media screen and (min-width: 980px){
+    body {
+        width: 980px;
+    }
+}
+
+h1 {
+    font-weight:300;
+    line-height: 1.15em;
+}
+
+h2 {
+    font-size: 1.75em;
+}
+a:link,a:visited {
+    color: #5364cc;
+    text-decoration: none;
+}
+a:hover {
+    color: #208799;
+}
+h1 {
+    text-align: center;
+}
+h2,h3 {
+    text-align: left;
+}
+
+h1 {
+    font-size: 40px;
+    font-weight: 500;
+}
+h2 {
+    font-weight: 400;
+    margin: 16px 0px 4px 0px;
+}
+h3 {
+    font-weight: 600;
+    margin: 16px 0px 4px 0px;
+}
+
+.paper-title {
+    padding: 1px 0px 1px 0px;
+}
+section {
+    margin: 32px 0px 32px 0px;
+    text-align: justify;
+    clear: both;
+}
+.col-5 {
+     width: 20%;
+     float: left;
+}
+.col-4 {
+     width: 25%;
+     float: left;
+}
+.col-3 {
+     width: 33%;
+     float: left;
+}
+.col-2 {
+     width: 50%;
+     float: left;
+}
+.col-1 {
+     width: 100%;
+     float: left;
+}
+
+.author-row, .affil-row {
+    font-size: 26px;
+}
+
+.author-row-new { 
+    text-align: center; 
+}
+
+.author-row-new a {
+    display: inline-block;
+    font-size: 20px;
+    padding: 4px;
+}
+
+.author-row-new sup {
+    color: #313436;
+    font-size: 12px;
+}
+
+.affiliations-new {
+    font-size: 18px;
+    text-align: center;
+    width: 80%;
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+
+.row {
+    margin: 16px 0px 16px 0px;
+}
+.authors {
+    font-size: 26px;
+}
+.affiliatons {
+    font-size: 18px;
+}
+.affil-row {
+    margin-top: 18px;
+}
+.teaser {
+    max-width: 100%;
+}
+.text-center {
+    text-align: center;  
+}
+.screenshot {
+    width: 256px;
+    border: 1px solid #ddd;
+}
+.screenshot-el {
+    margin-bottom: 16px;
+}
+hr {
+    height: 1px;
+    border: 0; 
+    border-top: 1px solid #ddd;
+    margin: 0;
+}
+.material-icons {
+    vertical-align: -6px;
+}
+p {
+    line-height: 1.25em;
+}
+.caption {
+    font-size: 16px;
+    color: #666;
+    margin-top: 4px;
+    margin-bottom: 10px;
+}
+
+
+video {
+    display: block;
+    margin: auto;
+}
+
+
+figure {
+    display: block;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+#bibtex pre {
+    font-size: 14px;
+    background-color: #eee;
+    padding: 16px;
+}
+.blue {
+    color: #2c82c9;
+    font-weight: bold;
+}
+.orange {
+    color: #d35400;
+    font-weight: bold;
+}
+.flex-row {
+    display: flex;
+    flex-flow: row wrap;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.paper-btn-coming-soon {
+    position: relative; 
+    top: 0;
+    left: 0;
+}
+
+.coming-soon {
+    position: absolute;
+    top: -15px;
+    right: -15px;
+}
+
+.paper-btn {
+  position: relative;
+  text-align: center;
+
+  display: inline-block;
+  margin: 8px;
+  padding: 8px 8px;
+
+  border-width: 0;
+  outline: none;
+  border-radius: 2px;
+  
+  background-color: #5364cc;
+  color: white !important;
+  font-size: 20px;
+  width: 100px;
+  font-weight: 600;
+}
+.paper-btn-parent {
+    display: flex;
+    justify-content: center;
+    margin: 16px 0px;
+}
+
+.paper-btn:hover {
+    opacity: 0.85;
+}
+
+.container {
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+.venue {
+    font-size: 23px;
+}
+
+.topnav {
+    background-color: #EEEEEE;
+    overflow: hidden;
+}
+
+.topnav div {
+    max-width: 1070px;
+    margin: 0 auto;
+}
+
+.topnav a {
+    display: inline-block;
+    color: black;
+    text-align: center;
+    vertical-align: middle;
+    padding: 16px 16px;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.topnav img {
+    padding: 2px 0px;
+    width: 100%;
+    margin: 0.2em 0px 0.3em 0px;
+    vertical-align: middle;
+}
+
+pre {
+    font-size: 0.9em;
+    padding-left: 7px;
+    padding-right: 7px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    border-radius: 3px;
+    background-color: rgb(235, 235, 235);
+    overflow-x: auto;
+}
+
+.download-thumb {
+    display: flex;
+}
+
+@media only screen and (max-width: 620px) {
+    .download-thumb {
+        display: none;
+    }
+}
+
+.paper-stuff {
+    width: 50%;
+    font-size: 20px;
+}
+
+@media only screen and (max-width: 620px) {
+    .paper-stuff {
+        width: 100%;
+    }
+}
+* {
+  box-sizing: border-box;
+}
+
+.column {
+  text-align: center;
+  float: left;
+  width: 16.666%;
+  padding: 5px;
+}
+.column3 {
+  text-align: center;
+  float: left;
+  width: 33.333%;
+  padding: 5px;
+}
+.column4 {
+  text-align: center;
+  float: left;
+  width: 50%;
+  padding: 5px;
+}
+.border-right {
+    border-right: 1px solid black;
+}
+.border-bottom{
+    border-bottom: 1px solid black;
+}
+
+
+
+/* Clearfix (clear floats) */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 500px) {
+  .column {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 500px) {
+  .column3 {
+    width: 100%;
+  }
+}
+
+</style>
+
+<script type="text/javascript" src="../js/hidebib.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Titillium+Web:400,600,400italic,600italic,300,300italic' rel='stylesheet' type='text/css'>
     <head>
-	<link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta name="description" content="">
-	<meta name="author" content="">
-	<title>Composing Ensembles of Pre-trained Models via Iterative Consensus</title>
-
-	<!-- Bootstrap core CSS -->
-	<link href="vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
-	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-	<!-- Custom styles for this template -->
-
-
-	<link href="css/scrolling-nav.css" rel="stylesheet">
-	<link href="css/style.css" rel="author stylesheet">
+        <title> LION: Latent Point Diffusion Models for 3D Shape Generation </title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta property="og:description" content="LION: Latent Point Diffusion Models for 3D Shape Generation"/>
+        <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:creator" content="@karsten_kreis">
+        <meta name="twitter:title" content="LION: Latent Point Diffusion Models for 3D Shape Generation">
+        <meta name="twitter:description" content="We introduce the Latent Point Diffusion Model (LION) for 3D shape generation. LION is constructed as a hierarchical VAE with denoising diffusion-based generative models in latent space. LION achieves state-of-the-art generation performance on ShapeNet benchmarks.">
+        <meta name="twitter:image" content="https://nv-tlabs.github.io/LION/assets/twitter_summary_fig.png">
     </head>
 
-    <body id="page-top">
-
-	<!-- Navigation -->
-	<nav class="navbar navbar-expand-md navbar-dark fixed-top scrolled" id="mainNav">
-	    <div class="container bar-container">
-		<!-- <a class="navbar-brand js-scroll-trigger" href="#page-top">PIC</a> -->
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-		    <span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse" id="navbarResponsive">
-		    <ul class="navbar-nav ml-auto">
-		    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">About</a></li>
-		    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#paper">Paper</a></li>
-		    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#method">Method</a></li>
-		    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#result">Results</a></li>
-			<li class="nav-item"><a class="nav-link js-scroll-trigger" href="https://github.com/ShuangLI59/Composing-Ensembles-of-Pre-trained-Models-via-Iterative-Consensus">Code</a></li>
-			<li class="nav-item"><a class="nav-link js-scroll-trigger" href="index.html#team">Team</a></li>
-		    </ul>
-		</div>
-	    </div>
-	</nav>
-
-	
-	
-	<!-- <header class="headercontainer bg-primary text-white" style="padding: 0%; max-height: none; background: url('images/vid/teaser_ppt.mp4'); background-repeat: no-repeat; background-position: 30% 10%; background-attachment: fixed; background-size:cover">
-	    <div style="background-color: rgba(160,160,160,0)" class="text-center">
-		<div style="padding-bottom: 10%; padding-top: 12%">
-	    <div class="container titlebox"; style="display: inline-block; background-color:rgba(0,0,0, 0.7); width:auto;">
-		<p style="text-align: center;" class="subtitle"> Composing Ensembles of Pre-trained Models via Iterative Consensus </p>
-	    </div>
-	    </div>
-	    </div>
-	</header> -->
+ <body>
 
 
-	<header class="headercontainer text-white" style="padding: 0%; max-height: none; background: url(''); background-repeat: no-repeat; background-position: 0% 0%; background-attachment: fixed; background-size:cover">
-	    <div style="background-color: rgba(160,160,160,0)" class="text-center">
-		<div style="padding-bottom: 10%; padding-top: 12%">
-	    <div class="container titlebox"; style="display: inline-block; background-color:rgba(0,0,0, 0.7); width:auto;">
-		<p style="text-align: center;" class="subtitle"> Composing Ensembles of Pre-trained Models via Iterative Consensus </p>
-	    </div>
-	    </div>
-	    </div>
-	</header>
+<div class="container">
+    <div class="paper-title">
+    <h1> 
+        Composing Ensembles of Pre-trained Models via Iterative Consensus
+    </div>
 
+    <div id="authors">
+        <center>
+            <div class="author-row-new">
+                <a href="https://people.csail.mit.edu/lishuang/">Shuang Li*<sup>1</sup></a>,
+                <a href="https://yilundu.github.io/">Yilun Du*<sup>1</sup></a>,
+                <a href="https://scholar.google.com/citations?user=rRJ9wTJMUB8C&hl=en">Joshua B. Tenenbaum<sup>1</sup></a>,
+                <a href="https://groups.csail.mit.edu/vision/torralbalab/">Antonio Torralba<sup>1</sup></a>
+                <a href="https://scholar.google.com/citations?user=Vzr1RukAAAAJ&hl=en">Igor Mordatch<sup>2</sup></a>
+            </div>
+        </center>
+        <center>
+        <div class="affiliations">
+            <span><sup>1</sup> MIT</span>
+            <span><sup>2</sup> Google Brain</span><br/>
+        </div>
 
+        <br>*indicates equal contribution. Shuang Li did all the experiments on image generation, video question answering, and mathematical reasoning. Yilun Du did all the experiments on robot manipulation.
 
-	<hr class="half-rule"/>
-	<section id="about">
-	    <div class="container">
-		<div class="row">
-		    <div class="col-md-12 mx-auto">
-			<span class=titlesec>About</span>
-			<br>
-			<span>
-				Large pre-trained models exhibit distinct and complementary capabilities dependent on the data they are trained on. Language models such as GPT-3 are capable of textual reasoning but cannot understand visual information, while vision models such as DALL-E can generate photorealistic photos but fail to understand complex language descriptions. 
-				<br><br>
-				In this work, we propose a unified framework for composing ensembles of different pre-trained models -- combining the strengths of each individual model to solve various multimodal problems in a zero-shot manner. We use pre-trained models as "generators" or "scorers" and compose them via closed-loop iterative consensus optimization. The generator constructs proposals and the scorers iteratively provide feedback to refine the generated result. Such closed-loop communication enables models to correct errors caused by other models, significantly boosting performance on downstream tasks, e.g. improving accuracy on grade school math problems by 7.5%, without requiring any model finetuning. We demonstrate that consensus achieved by an ensemble of scorers outperforms the feedback of a single scorer, by leveraging the strengths of each expert model. Results show that the proposed method can be used as a general purpose framework for a wide range of zero-shot multimodal tasks, such as image generation, video question answering, mathematical reasoning, and robotic manipulation.
-			</span>
-		    </div>
-		</div>
-	    </div>
+        <div class="affil-row">
+            <div class="venue text-center"><b>arXiv 2022 </b></div>
+        </div>
 
-	</section>
+        </center>
+
+        <div style="clear: both">
+            <div class="paper-btn-parent">
+            <a class="paper-btn" href="https://arxiv.org/abs/2210.06978">
+                <span class="material-icons"> description </span> 
+                 Paper
+            </a>
+            <div class="paper-btn-coming-soon">
+                <a class="paper-btn" href="https://github.com/nv-tlabs/LION">
+                    <span class="material-icons"> code </span>
+                    Code
+                </a>
+            </div>
+        </div></div>
+    </div>
+
+    
+    <!-- <section id="teaser-image">
+        <center>
+            <figure>
+                <video class="centered" width="80%" autoplay loop muted playsinline class="video-background " >
+                    <source src="assets/LION_video_v10.mp4#t=0.001" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </figure>
+
+        </center>
+    </section>
+     -->
 
 
 
-		
+    <section id="teaser-image">
+        <center>
+            <figure>
 
-<!-- 	<center>
-		<div class="col-md-16 mx-auto wide">
-	    		<video width="500" loop autoplay muted>
-	    			<source class="card-img-top" src="images/vid/teaser_ppt.mp4" type="video/mp4">
-				</video>
-	    		<br>
-	    </div>
-	</center>
+                <video width="650" loop autoplay muted>
+                    <source src="materials/teaser-2.mp4" type="video/mp4">
+                </video>
+
+                <!-- <br><br> -->
+
+                <!-- <video width="800" loop autoplay muted style="border:1px solid black">
+                    <source src="materials/new3.mp4" type="video/mp4">
+                </video>
+ -->
+            </figure>
+
+        </center>
+    </section>
+    
+    
+
+    
+    <section id="abstract"/>
+        <hr>
+        <h2>Abstract</h2>
+        <div class="flex-row">
+            <p>
+                Large pre-trained models exhibit distinct and complementary capabilities dependent on the data they are trained on. Language models such as GPT-3 are capable of textual reasoning but cannot understand visual information, while vision models such as DALL-E can generate photorealistic photos but fail to understand complex language descriptions. 
+                <br><br>
+                In this work, we propose a unified framework for composing ensembles of different pre-trained models -- combining the strengths of each individual model to solve various multimodal problems in a zero-shot manner. We use pre-trained models as "generators" or "scorers" and compose them via closed-loop iterative consensus optimization. The generator constructs proposals and the scorers iteratively provide feedback to refine the generated result. Such closed-loop communication enables models to correct errors caused by other models, significantly boosting performance on downstream tasks, e.g. improving accuracy on grade school math problems by 7.5%, without requiring any model finetuning. We demonstrate that consensus achieved by an ensemble of scorers outperforms the feedback of a single scorer, by leveraging the strengths of each expert model. Results show that the proposed method can be used as a general purpose framework for a wide range of zero-shot multimodal tasks, such as image generation, video question answering, mathematical reasoning, and robotic manipulation.
+            </p>
+        </div>
+    </section>
+    <section id="method"/>
+        <hr>
+        <h2>Method</h2>
+            
+            <div class="col-md-12 mx-auto">
+                <left><p>The proposed framework that composes a "generator" and an ensemble of "scorers" through iterative consensus enables zero-shot generalization across a variety of multimodal tasks.</p></left>
+                <center><img class="card-img-top" src="materials/teaser.png" style="width:950px"></center>
+            </div>
+
+
+            <br><br><br>
+
+            <!-- <div class="row">
+                    <div class="column4">
+                        <center><img class="card-img-top" src="materials/framework.png" style="width:400px"></center>
+                    </div>
+
+                    <div class="column4">
+                        <video width="400" loop autoplay muted>
+                            <source src="materials/teaser3.mp4" type="video/mp4">
+                        </video>
+                    </div>
+            </div>
  -->
 
 
 
+            <div class="flex-row">
+                <div class="col-md-6 mx-auto">
+                    <left><p><b>Overview of the proposed unified framework.</b> Dashed lines are omitted for certain tasks. Orange lines represent the components used to refine the generated result.</p></left>
+                    <br>
+                    <center><img class="card-img-top" src="materials/framework.png" style="width:400px"></center>
 
-	<hr class="half-rule"/>
-	<section id="paper">
-	    <div class="container" id="models">
-		<div class="row">
-		    <div class="col-md-12 mx-auto">
-			<span class="titlesec"><span></span>Paper</span>
-			<br><br>
-			<div class="publication">
-			    <div class="icon_publication">
-				<a class='paperlink' href='https://arxiv.org/pdf/1806.07011.pdf'>
-				    <img src="images/paper/teaser.png" alt="">
-				</a>
-			    </div>
-			    <div class="content_publication">
-				<p class="title_paper"> Composing Ensembles of Pre-trained Models via Iterative Consensus </p>
-				Shuang Li, Yilun Du, Joshua B. Tenenbaum, Antonio Torralba, Igor Mordatch
-				<br>
-				<a href="https://arxiv.org/abs/2110.03562"> Paper </a> &nbsp;&nbsp;
-				<a href="https://github.com/ShuangLI59/Composing-Ensembles-of-Pre-trained-Models-via-Iterative-Consensus"> PyTorch Code</a>
-				<br>
-				<!-- <em> International Conference on Computer Vision (ICCV), 2021. </em><br> -->
-			    </div>
-			</div>
-		    </div>
-		</div>
-	    </div>
-	</section>
+                    <br><br>
+
+                    <!-- <video width="800" loop autoplay muted style="border:1px solid black"> -->
+                    <video width="840" loop autoplay muted controls>
+                        <source src="materials/new3-2.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+                <br><br>
+                <p><b>Image generation: </b> A pre-trained diffusion model is used as the generator, and multiple scorers, such as CLIP and image classifiers, are used to provide feedback to the generator.</p>
+                <p><b>Video question answering: </b> GPT-2 is used as the generator, and a set of CLIP models are used as scorers.</p>
+                <p><b>Grade school math: </b> GPT-2 is used as the generator, and a set of question-solution classifiers are used as scorers.</p>
+                <p><b>Robot manipulation: </b> MPC+World model is used as the generator, and a pre-trained image segmentation model is used to compute the scores from multiple camera views to select the best action.</p>
+
+            </div>
+
+    </section>
 
 
 
 
+        
+
+    <section id="results">
+        <hr>
+        <h2>Grade School Math Results</h2>  
+
+            <center>
+            <figure>
+                <video class="centered" width="100%" autoplay loop muted playsinline class="video-background " >
+                    <source src="materials/math.mp4#t=0.001" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </figure>
+            </center>
+
+        <hr>
 
 
+        <h2>Video Question Answering Results</h2>  
+            
+            
 
+    </section> 
 
+   
 
-	<hr class="half-rule"/>
-	<section id="paper">
-	    <div class="container" id="method">
-		<div class="row">
-			<div class="col-md-12 mx-auto">
-				<span class="titlesec"><span></span>Method</span>
-				<br><br>
+    <section id="paper">
+        <h2>Paper</h2>
+        <hr>
+        <div class="flex-row">
+            <div class="download-thumb">
+            <div style="box-sizing: border-box; padding: 16px; margin: auto;">
+                <a href="https://energy-based-model.github.io/composing-pretrained-models/"><img class="screenshot" src="materials/thumb_finger.png"></a>
+            </div>
+        </div>
+            <div class="paper-stuff">
+                <p><b>Composing Ensembles of Pre-trained Models via Iterative Consensus</b></p>
+                <p>Shuang Li, Yilun Du, Joshua B. Tenenbaum, Antonio Torralba, Igor Mordatch</p>
+                <!-- <p><i>arXiv, 2022 <b></b></i></p>  -->
+                <div><span class="material-icons"> description </span><a href="https://arxiv.org/abs/2210.06978"> arXiv version</a></div>
+                <div><span class="material-icons"> integration_instructions </span><a href="https://github.com/nv-tlabs/LION"> Code</a></div>
+            </div>
+            </div>
+        </div>
+    </section>
 
-				<p>The proposed framework that composes a "generator" and an ensemble of "scorers" through iterative consensus enables zero-shot generalization across a variety of multimodal tasks.</p>
-				<left><img class="card-img-top" src="images/paper/teaser.png" style="width:1050px"></left>
-
-				<br><br><br><br>
-				<br><br>
-			</div>
-
-
-
-			<div class="col-md-6 mx-auto">
-				<p><b>Overview of the proposed unified framework.</b> Dashed lines are omitted for certain tasks. Orange lines represent the components used to refine the generated result.</p>
-				<br><br>
-				<center><img class="card-img-top" src="images/paper/framework.png" style="width:400px"></center>
-			</div>
-
-
-			<div class="col-9-4 mx-auto wide">
-	    	<!-- <div class="card"> -->
-	    		<video width="380" autoplay muted loop>
-	    			<source class="card-img-top" src="images/vid/teaser3.mp4" type="video/mp4">
-				</video>
-	    		<br>
-	    	<!-- </div> -->
-	    	</div>
-
-
-	    </div>	    
-	</section>
-
-
-	<center>
-		<div class="col-md-16 mx-auto wide">
-	    	<!-- <div class="card"> -->
-	    		<video width="1350" loop autoplay muted>
-	    			<source class="card-img-top" src="images/vid/new3.mp4" type="video/mp4">
-				</video>
-	    		<br>
-	    	<!-- </div> -->
-	    </div>
-	</center>
-		
-
-
-
-	<hr class="half-rule"/>
-	<section id="paper">
-	    <div class="container" id="result">
-		<div class="row">
-		    <div class="col-md-12 mx-auto">
-			<span class="titlesec"><span></span>Results</span>
-			<br><br>
-
-			<p><b>Grade school math example results.</b> Our method can solve math problems involving addition, subtraction, multiplication, and division.</p>
-			
-			<center>
-			<div class="col-md-12 mx-auto wide">
-		    	<!-- <div class="card"> -->
-		    		<video width="1000" loop autoplay muted>
-		    			<source class="card-img-top" src="images/vid/vqa.mp4" type="video/mp4">
-					</video>
-		    		<br>
-		    	<!-- </div> -->
-		    </div>
-		</center>
-			
-
-
-		</div>
-	    </div>
-	</section>
-
-
-
-
-
-
-
-	<hr class="half-rule"/>
-	<hr class="half-rule"/>
-
-	<section id="team">
-	    <div class="container">
-
-		<span class=titlesec>Team</span><br>
-		<div class="row">
-		    <div class="profpic xlarge-1 columns">
-			<a href='https://people.csail.mit.edu/lishuang/'>
-			    <img  src=./images/people/lishuang.jpg class="figure-img img-fluid rounded-circle">
-			</a>
-			<p class=profname>Shuang Li</p>
-			<p class=institution>MIT</p>
-		    </div>
-
-		    <div class="profpic xlarge-1 columns">
-			<a href='https://yilundu.github.io/'>
-			    <img  src=./images/people/yilun.jpg class="figure-img img-fluid rounded-circle">
-			</a>
-			<p class=profname> Yilun Du </p>
-			<p class=institution>MIT</p>
-		    </div>
-
-		    <div class="profpic xlarge-1 columns">
-			<a href='https://yilundu.github.io/'>
-			    <img  src=./images/people/josh2.jpg class="figure-img img-fluid rounded-circle">
-			</a>
-			<p class=profname> Joshua Tenenbaum </p>
-			<p class=institution>MIT</p>
-		    </div>
-
-		    <div class="profpic xlarge-1 columns">
-			<a href="https://scholar.google.com/citations?user=rRJ9wTJMUB8C&hl=en">
-			    <img src=./images/people/antonioTorralba.jpg class="figure-img img-fluid rounded-circle">
-			</a>
-			<p class=profname> Antonio Torralba </p>
-			<p class=institution>MIT</p>
-			</div>
-
-			<div class="profpic xlarge-1 columns">
-			<a href='https://yilundu.github.io/'>
-			    <img  src=./images/people/xuusrug0_400x400.jpeg class="figure-img img-fluid rounded-circle">
-			</a>
-			<p class=profname> Igor Mordatch </p>
-			<p class=institution>Google Brain</p>
-		    </div>			
-		</div>
-	</section>
-
-
-
-	<br>
-	<hr class="half-rule"/>
-	<section id="contact">
-	    <div class="container">
-		<span class=titlesec>Contact</span><br>
-		Reach out to <a href="mailto:lishuang@mit.edu">lishuang@mit.edu</a> for questions, suggestions, and feedback.
-	    </div>
-	</section>
-
-	<!-- Footer -->
-	<footer class="py-3 bg-dark">
-	    <div class="container" style="text-align: center">
-		 <a href="http://accessibility.mit.edu" style="margin-left: 20px"> Accessibility </a>
-	    </div>
-	    <!-- /.container -->
-	</footer>
-
-	<!-- Bootstrap core JavaScript -->
-	<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
-	<script src="vendor/jquery/jquery.min.js"></script>
-	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-	<!-- Plugin JavaScript -->
-	<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-	<!-- Custom JavaScript for this theme -->
-	<script src="js/scrolling-nav.js"></script>
-
-    </body>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-117331227-1"></script>
-    <script>
-	window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-
-gtag('config', 'UA-117331227-1');
-    </script>
-
+    <section id="bibtex">
+        <h2>Citation</h2>
+        <hr>
+        <pre><code>@inproceedings{zeng2022lion,
+    title={LION: Latent Point Diffusion Models for 3D Shape Generation},
+    author={Xiaohui Zeng and Arash Vahdat and Francis Williams and Zan Gojcic and Or Litany and Sanja Fidler and Karsten Kreis},
+    booktitle={Advances in Neural Information Processing Systems (NeurIPS)},
+    year={2022}
+}</code></pre>
+    </section>
+</div>
+</body>
 </html>
